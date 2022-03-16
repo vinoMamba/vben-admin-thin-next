@@ -1,30 +1,26 @@
 <template>
-  <PageWrapper title="关于">
+  <HPage title="执勤实力">
     <template #headerContent>
-      <div class="flex justify-between items-center">
-        <span class="flex-1">
-          <a :href="GITHUB_URL" target="_blank">{{ name }}</a>
-          是一个基于Vue3.0、Vite、 Ant-Design-Vue 、TypeScript
-          的后台解决方案，目标是为中大型项目开发,提供现成的开箱解决方案及丰富的示例,原则上不会限制任何代码用于商用。
-        </span>
-      </div>
+      <Button type="primary">按钮1</Button>
+      <Button>按钮2</Button>
+      <Button>按钮3</Button>
     </template>
     <Description @register="infoRegister" class="enter-y" />
     <Description @register="register" class="my-4 enter-y" />
     <Description @register="registerDev" class="enter-y" />
-  </PageWrapper>
+  </HPage>
 </template>
 <script lang="ts" setup>
   import { h } from 'vue';
   import { Tag } from 'ant-design-vue';
-  import { PageWrapper } from '/@/components/Page';
-  import { Description, DescItem, useDescription } from '/@/components/Description/index';
+  import { Description, DescItem, useDescription } from '/@/components/Description';
   import { GITHUB_URL, SITE_URL, DOC_URL } from '/@/settings/siteSetting';
+  import { HPage } from '/@/views/components/HPage';
+  import { Button } from '/@/components/Button';
 
   const { pkg, lastBuildTime } = __APP_INFO__;
 
-  const { dependencies, devDependencies, name, version } = pkg;
-
+  const { dependencies, devDependencies, version } = pkg;
   const schema: DescItem[] = [];
   const devSchema: DescItem[] = [];
 
