@@ -36,11 +36,17 @@ export const LoginRoute: AppRouteRecordRaw = {
   },
 };
 
+export const DingLoginRoute: AppRouteRecordRaw = {
+  path: '/ding',
+  name: 'DingLogin',
+  component: () => import('/@/views/sys/login/DingLogin.vue'),
+  meta: {
+    title: t('routes.basic.login'),
+  },
+};
+//@ts-ignore
+const useDingLogin = import.meta.env.VITE_USE_DING_LOGIN === 'true';
 // Basic routing without permission
-export const basicRoutes = [
-  LoginRoute,
-  RootRoute,
-  ...mainOutRoutes,
-  REDIRECT_ROUTE,
-  PAGE_NOT_FOUND_ROUTE,
-];
+export const basicRoutes = useDingLogin
+  ? [DingLoginRoute, LoginRoute, RootRoute, ...mainOutRoutes, REDIRECT_ROUTE, PAGE_NOT_FOUND_ROUTE]
+  : [LoginRoute, LoginRoute, RootRoute, ...mainOutRoutes, REDIRECT_ROUTE, PAGE_NOT_FOUND_ROUTE];
